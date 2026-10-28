@@ -18,6 +18,21 @@ $('nav').replaceChildren(...Object.values(LOGOS).map(l => {
 }));
 $('title').textContent = 'Logo ' + current.name;
 
+// Tema: sin elección sigue al sistema; el botón lo fija en claro u oscuro y se recuerda
+const root = document.documentElement;
+const dark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+try { if (localStorage.theme) root.dataset.theme = localStorage.theme; } catch {}
+const themeBtn = document.createElement('button');
+themeBtn.id = 'theme';
+const paint = () => themeBtn.textContent = dark() ? '☀ Claro' : '☾ Oscuro';
+themeBtn.onclick = () => {
+  root.dataset.theme = dark() ? 'light' : 'dark';
+  try { localStorage.theme = root.dataset.theme; } catch {}
+  paint();
+};
+paint();
+$('nav').append(themeBtn);
+
 // Los estilos computados vienen como rgb(); el input color necesita #rrggbb
 const toHex = c => {
   const m = c.match(/\d+/g);
