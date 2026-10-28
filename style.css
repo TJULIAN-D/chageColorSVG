@@ -34,3 +34,6 @@ input[type=color]::-moz-color-swatch { border: 0; border-radius: 50%; }
   main { flex-direction: column; }
   #panel { width: auto; border: 0; border-bottom: 1px solid var(--line); }
 }
+.row button { padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; background: none; color: var(--muted); font: inherit; font-size: 13px; cursor: pointer; }
+.row button:hover { border-color: var(--accent); color: var(--text); }
+#groups { margin-top: 16px; }

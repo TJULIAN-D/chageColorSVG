@@ -33,6 +33,14 @@ themeBtn.onclick = () => {
 paint();
 $('nav').append(themeBtn);
 
+// Color de fondo de la vista previa (no se incluye en el SVG descargado)
+const bgRow = document.createElement('div');
+bgRow.className = 'row';
+bgRow.innerHTML = '<span>Fondo</span><button type="button" title="Volver a cuadros">Transparente</button><input type="color" value="#ffffff" title="Color de fondo">';
+bgRow.querySelector('input').oninput = e => $('view').style.background = e.target.value;
+bgRow.querySelector('button').onclick = () => $('view').style.background = '';
+$('groups').before(bgRow);
+
 // Los estilos computados vienen como rgb(); el input color necesita #rrggbb
 const toHex = c => {
   const m = c.match(/\d+/g);
